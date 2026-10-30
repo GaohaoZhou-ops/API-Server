@@ -1,0 +1,35 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title": "Example Service", "version": "1.0.0", "description": "虚构的公开接口，仅用于展示文档格式。"},
+  "servers": [{"url": "https://api.example.com/v1", "description": "示例地址，请替换为服务提供方给出的地址"}],
+  "tags": [{"name": "服务状态", "description": "公开的服务状态接口"}],
+  "security": [{"BearerAuth": []}],
+  "paths": {
+    "/status": {
+      "get": {
+        "x-audience": "public",
+        "operationId": "getStatus",
+        "summary": "读取服务状态",
+        "description": "获取服务对外公开的状态和版本。",
+        "tags": ["服务状态"],
+        "responses": {
+          "200": {"description": "查询成功", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Status"}}}},
+          "401": {"description": "API 凭据缺失或无效"}
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {"BearerAuth": {"type": "http", "scheme": "bearer"}},
+    "schemas": {
+      "Status": {
+        "type": "object",
+        "required": ["status", "version"],
+        "properties": {
+          "status": {"type": "string", "enum": ["ok", "degraded"], "description": "服务状态"},
+          "version": {"type": "string", "example": "1.0.0", "description": "公开版本号"}
+        }
+      }
+    }
+  }
+}

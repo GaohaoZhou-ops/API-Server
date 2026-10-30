@@ -1,0 +1,3 @@
+# Copy to the private configuration directory only when managing policies by hand.
+# The administrator panel manages this file automatically.
+companies: {}

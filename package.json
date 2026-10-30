@@ -1,0 +1,17 @@
+{
+  "name": "api-server-docs",
+  "version": "1.0.0",
+  "description": "A reusable documentation portal with an explicit public-document publishing protocol",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "start": "node docs-server.mjs",
+    "docs:check": "node scripts/docs.mjs check",
+    "docs:publish": "node scripts/docs.mjs publish",
+    "credentials": "node scripts/setup.mjs credentials",
+    "audit:public": "node scripts/audit-public.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}

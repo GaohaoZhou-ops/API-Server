@@ -1,0 +1,18 @@
+{
+  "protocol": "api-docs/v1",
+  "visibility": "public",
+  "revision": "1.0.0",
+  "productVersion": "1.0.0",
+  "publishedAt": "2026-10-30T00:00:00Z",
+  "site": {
+    "name": "Example Docs",
+    "title": "示例服务文档",
+    "description": "使用 Markdown 编写指南，使用 OpenAPI 描述公开接口。此站点提供阅读、搜索与调用示例。"
+  },
+  "guides": [
+    {"id": "quickstart", "title": "快速开始", "group": "开始使用", "description": "了解文档包和公开接口的调用方式。", "file": "guides/quickstart.md"},
+    {"id": "authentication", "title": "接口鉴权", "group": "接入指南", "description": "区分文档访问权限与业务 API 凭据。", "file": "guides/authentication.md"}
+  ],
+  "openapi": "openapi.json",
+  "changes": {"title": "首个公开文档版本", "added": ["快速开始与接口鉴权指南", "公开的状态查询示例"], "validation": ["示例地址使用 example.com，不连接真实业务服务。"]}
+}

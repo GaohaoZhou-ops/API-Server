@@ -1,0 +1,32 @@
+[
+  {
+    "package": "markdown-it",
+    "version": "15.0.2",
+    "license": "MIT",
+    "file": "markdown-it.mjs",
+    "source": "https://registry.npmjs.org/markdown-it/-/markdown-it-15.0.2.tgz",
+    "integrity": "sha512-q4IGxMv56jCqT4OCRCADBoDP3LO4MhmTXjFbphHPXs4g3j9Xg5RDnxqN8IF/3vIWEU+VCnUq+7JUg/cfy2E6Qw==",
+    "sha256": "24cd043453817c3664d24bedd7a03809ea56f89b1f943f2955f0b1a418206e38",
+    "adaptation": "Source-map comment omitted; no runtime CDN requests."
+  },
+  {
+    "package": "@highlightjs/cdn-assets",
+    "version": "11.12.0",
+    "license": "BSD-3-Clause",
+    "file": "highlight.mjs",
+    "source": "https://registry.npmjs.org/@highlightjs/cdn-assets/-/cdn-assets-11.12.0.tgz",
+    "integrity": "sha512-KvOKXODaiFmId9xaq3xc5xCL66wVLUuOngDbO9B/kewbFTqdGbn2nJxNhN3H5R1cgDTVj6R8vH0zgiNDEGjpDw==",
+    "sha256": "1ed8fc5256b738b8875b74e4d3f0754f60d6411fb034d618dfbc4e6e6c9999d7",
+    "adaptation": "Source-map comment omitted; no runtime CDN requests."
+  },
+  {
+    "package": "@dagrejs/dagre",
+    "version": "3.1.1",
+    "license": "MIT",
+    "file": "dagre.mjs",
+    "source": "https://registry.npmjs.org/@dagrejs/dagre/-/dagre-3.1.1.tgz",
+    "integrity": "sha512-zroZB1dFOFiGgv4Xcrn1DckB1o4aOikPqD2NDQPV0WM//CXGcS6xiD0rNkqHmw6FEg4tabt4nxPLwgCWT+Vb2A==",
+    "sha256": "f61aa75a50b0012f614c1156fd78a2b85540d1b645b5847badd5d10d7dc7dab9",
+    "adaptation": "Bundled ESM; source-map comment omitted. License notices retained in dagre.LEGAL.txt."
+  }
+]

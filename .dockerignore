@@ -1,0 +1,21 @@
+# Allowlist the build context; consumer documents/config/state never enter it.
+**
+!package.json
+!requirements.txt
+!*.mjs
+!scripts/
+!scripts/*.mjs
+!scripts/*.py
+!web/
+!web/**
+!public/
+!public/fonts/
+!public/fonts/**
+!config/
+!config/*.example
+!examples/
+!examples/hello-docs/
+!examples/hello-docs/docs.json
+!examples/hello-docs/openapi.json
+!examples/hello-docs/guides/
+!examples/hello-docs/guides/*.md

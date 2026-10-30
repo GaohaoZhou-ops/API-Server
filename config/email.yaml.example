@@ -1,0 +1,11 @@
+# Copy values into var/config/email.yaml after npm run setup.
+enabled: false
+sender: notifications@example.com
+recipient: administrator@example.com
+smtp_host: smtp.example.com
+smtp_port: 465
+smtp_security: ssl
+smtp_username: notifications@example.com
+smtp_password: ''
+# Use your permanent HTTPS address in notification/authorization email.
+access_url: https://docs.example.com/

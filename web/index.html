@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="API 文档：接口定义、请求参数、数据结构与调用示例。">
+  <title>API Docs · 文档中心</title>
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/theme.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到文档内容</a>
+  <section id="auth-loading" class="login-screen" aria-live="polite" role="status">
+    <div class="login-card auth-loading-card">
+      <div class="logo-mark" aria-hidden="true">{<span>·</span>}</div>
+      <p class="eyebrow">DOCUMENTATION / DOCS</p>
+      <h1 id="auth-loading-message">正在确认登录状态…</h1>
+      <p class="muted">请稍候</p>
+    </div>
+  </section>
+  <section id="login" class="login-screen" hidden>
+    <form id="login-form" class="login-card">
+      <div class="logo-mark" aria-hidden="true">{<span>·</span>}</div>
+      <p class="eyebrow">DOCUMENTATION / DOCS</p>
+      <h1>进入接口文档</h1>
+      <label for="username">用户名</label>
+      <input id="username" name="username" type="text" autocomplete="username" required placeholder="请输入用户名">
+      <label for="organization">机构</label>
+      <input id="organization" name="organization" type="text" autocomplete="organization" maxlength="160" placeholder="请输入机构名称（选填）">
+      <label for="password">访问密码</label>
+      <div class="password-field">
+        <input id="password" type="password" autocomplete="current-password" required placeholder="请输入管理员提供的访问密码">
+        <button type="button" id="toggle-password" class="password-toggle" aria-controls="password" aria-label="显示密码" title="显示密码"><span data-icon="eye"></span><span>显示</span></button>
+      </div>
+      <button type="submit" id="login-submit" class="primary" disabled>打开文档 <span aria-hidden="true">↗</span></button>
+      <button type="button" id="access-request-open" class="secondary request-entry" disabled>申请访问</button>
+      <p id="login-error" class="error" role="alert"></p>
+      <p class="login-footer"><span class="tiny-dot"></span> Documentation Platform API空间</p>
+    </form>
+  </section>
+  <dialog id="access-request-dialog" class="request-dialog" aria-labelledby="access-request-title">
+    <div id="access-request-fields">
+      <div class="request-heading"><h2 id="access-request-title">申请访问</h2><button type="button" id="access-request-close" class="icon-button" aria-label="关闭申请表">×</button></div>
+      <p class="request-note">填写联系信息，由管理员审核并提供访问密码。</p>
+      <form id="access-request-form">
+        <label for="request-name">姓名</label>
+        <input id="request-name" name="name" autocomplete="name" maxlength="80" required placeholder="请输入姓名">
+        <label for="request-email">邮箱</label>
+        <input id="request-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="用于接收管理员回复">
+        <label for="request-organization">机构</label>
+        <input id="request-organization" name="organization" autocomplete="organization" maxlength="160" required placeholder="请输入公司、学校或机构名称">
+        <p class="request-note request-privacy">申请信息仅供管理员查看和联系。</p>
+        <p id="access-request-error" class="error" role="alert"></p>
+        <button id="access-request-submit" type="submit" class="primary">发送申请 <span aria-hidden="true">↗</span></button>
+        <p id="access-request-progress" class="request-note" role="status"></p>
+      </form>
+    </div>
+    <section id="access-request-success" class="request-success" hidden aria-labelledby="request-success-title">
+      <svg class="request-check" viewBox="0 0 80 80" aria-hidden="true"><circle class="request-check-fill" cx="40" cy="40" r="37"/><circle class="request-check-ring" cx="40" cy="40" r="34"/><path class="request-check-tick" d="m24 40 11 11 22-23"/></svg>
+      <h2 id="request-success-title" tabindex="-1">申请已提交</h2>
+      <p>已保存申请并安排邮件通知。<br>请等待管理员联系，访问密码由管理员提供。</p>
+      <button type="button" id="access-request-done" class="primary">返回登录</button>
+    </section>
+  </dialog>
+  <dialog id="login-failure-dialog" class="request-dialog" role="alertdialog" aria-labelledby="login-failure-title" aria-describedby="login-failure-description">
+    <div class="login-failure">
+      <svg class="request-check" viewBox="0 0 80 80" aria-hidden="true"><circle class="login-failure-fill" cx="40" cy="40" r="37"/><circle class="login-failure-ring" cx="40" cy="40" r="34"/><path class="login-failure-cross" d="m27 27 26 26"/><path class="login-failure-cross" d="m53 27-26 26"/></svg>
+      <h2 id="login-failure-title">访问密码错误</h2>
+      <p id="login-failure-description">请检查访问密码后重试。</p>
+      <button type="button" id="login-failure-retry" class="primary" autofocus>重新输入</button>
+    </div>
+  </dialog>
+  <div id="app" hidden>
+    <header class="header">
+      <div class="header-brand"><button id="open-menu" class="icon-button mobile-only" aria-label="打开目录" aria-expanded="false">☰</button><a href="#overview" class="brand"><span class="logo-mark small" aria-hidden="true">{<span>·</span>}</span><span id="site-name">API Docs</span></a></div>
+      <nav class="top-nav" aria-label="主导航"><a href="#overview" id="guide-tab">文档指南</a><a href="#reference" id="reference-tab">API 参考</a><a href="#compare" id="compare-tab">版本对比</a><a href="#feedback" id="feedback-tab">留言反馈</a><a href="#admin" id="admin-tab" hidden>管理员面板</a></nav>
+      <div class="header-tools">
+        <button id="search-open" class="search-trigger" aria-label="搜索文档" title="搜索文档（Ctrl / ⌘ + K）"><span data-icon="search"></span></button>
+        <label class="version-picker"><span class="sr-only">文档版本</span><select id="version-select" aria-label="文档版本"></select></label>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换到深色主题" aria-pressed="false" title="切换到深色主题" disabled>
+          <svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 13.2A9 9 0 0 1 10.8 3.1a9 9 0 1 0 10 10.1Z"/></svg>
+          <svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg>
+        </button>
+      </div>
+    </header>
+    <button id="menu-overlay" class="menu-overlay" aria-label="关闭目录" hidden></button>
+    <aside id="sidebar" class="sidebar">
+      <div class="project-label"><span data-icon="layers"></span><div><strong id="project-name">API 文档</strong><span id="project-stage">等待加载</span></div><button id="close-menu" class="icon-button mobile-only" aria-label="关闭目录">×</button></div>
+      <nav id="navigation" class="navigation" aria-label="文档目录"></nav>
+      <div class="sidebar-bottom"><a id="download-spec" href="/api/openapi.json" class="download-link" download><span data-icon="download"></span>下载 OpenAPI<span class="file-ext">JSON</span></a><div class="account-actions"><button id="logout">退出登录 <span aria-hidden="true">↗</span></button></div></div>
+    </aside>
+    <main id="main-content" class="main" tabindex="-1">
+      <div id="notice" class="notice"><span class="notice-dot"></span><span>接口契约与调用示例。</span><a href="#changelog">更新记录 <span aria-hidden="true">→</span></a></div>
+      <div id="app-error" class="error-banner" role="alert" hidden></div>
+      <div class="document-layout"><article id="document" class="document"></article><aside id="context" class="context" aria-label="当前文档相关内容"></aside></div>
+      <footer class="page-footer"><span>API Docs <span class="footer-separator">/</span> 接口文档</span><span id="footer-status">接口说明与调用示例</span></footer>
+    </main>
+  </div>
+  <dialog id="search-dialog" class="search-dialog" aria-label="搜索文档">
+    <div class="search-box"><span data-icon="search"></span><input id="search-input" type="search" autocomplete="off" placeholder="搜索接口路径、名称或文档…" aria-label="搜索文档关键词"><button id="search-close" class="key-button" aria-label="关闭搜索">Esc</button></div>
+    <div id="search-results" class="search-results" aria-live="polite"></div><div class="search-help">搜索文档标题、接口路径及字段名</div>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
